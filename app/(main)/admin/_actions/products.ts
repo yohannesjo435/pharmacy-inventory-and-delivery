@@ -37,7 +37,6 @@ export async function addProduct(prevState: unknown, formData: FormData) {
   );
   await prisma.product.create({
     data: {
-      id: "123",
       isAvailableForPurchase: false,
       name: data.name,
       description: data.description,
@@ -48,7 +47,7 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     },
   });
 
-  redirect("/admin/product");
+  redirect("/admin/products");
 }
 
 export async function toggleProductAvailablity(
