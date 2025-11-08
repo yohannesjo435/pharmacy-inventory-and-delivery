@@ -5,6 +5,8 @@ import {
   AudioWaveform,
   BookOpen,
   Bot,
+  CirclePlus,
+  ClipboardList,
   Command,
   Frame,
   GalleryVerticalEnd,
@@ -164,12 +166,12 @@ const items = [
   {
     title: "Add Product",
     url: "/admin/product/new",
-    icon: Home,
+    icon: CirclePlus,
   },
   {
     title: "Product List",
     url: "/admin/product",
-    icon: Inbox,
+    icon: ClipboardList,
   },
   {
     title: "Settings",
