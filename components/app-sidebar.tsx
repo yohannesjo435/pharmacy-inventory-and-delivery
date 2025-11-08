@@ -5,9 +5,12 @@ import {
   AudioWaveform,
   BookOpen,
   Bot,
+  CirclePlus,
+  ClipboardList,
   Command,
   Frame,
   GalleryVerticalEnd,
+  icons,
   Map,
   PieChart,
   Settings2,
@@ -59,32 +62,32 @@ const data = {
     {
       title: "Dashboard",
       url: "#",
-      icon: SquareTerminal,
+      icon: PieChart,
       isActive: true,
       items: [
         {
           title: "Anlatics",
-          url: "admin/product",
+          url: "/admin",
         },
         {
           title: "Order managment",
-          url: "admin/product",
+          url: "admin/products",
         },
         {
           title: "Customers",
-          url: "admin/product",
+          url: "/admin",
         },
         {
           title: "Transaction",
-          url: "admin/product",
+          url: "/admin",
         },
         {
           title: "Supplier",
-          url: "#",
+          url: "/admin",
         },
         {
           title: "Categories",
-          url: "#",
+          url: "/admin",
         },
         {
           title: "Driver",
@@ -161,14 +164,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
 const items = [
   {
-    title: "Product",
-    url: "#",
-    icon: Home,
+    title: "Add Product",
+    url: "/admin/products/new",
+    icon: CirclePlus,
   },
   {
     title: "Product List",
-    url: "#",
-    icon: Inbox,
+    url: "/admin/products",
+    icon: ClipboardList,
   },
   {
     title: "Settings",
