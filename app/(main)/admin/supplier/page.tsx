@@ -35,13 +35,15 @@ async function page() {
         <TableBody>
           {suppliers.map((supplier) => (
             <TableRow key={supplier.id}>
-              <Link
-                key={supplier.id}
-                href={`/admin/supplier/${supplier.id}`}
-                className="hover:underline"
-              >
-                <TableCell>{supplier.name}</TableCell>
-              </Link>
+              <TableCell>
+                <Link
+                  key={supplier.id}
+                  href={`/admin/supplier/${supplier.id}`}
+                  className="hover:underline"
+                >
+                  {supplier.name}
+                </Link>
+              </TableCell>
               <TableCell>{supplier.address}</TableCell>
               <TableCell>{supplier.city}</TableCell>
               <TableCell>{supplier.daysToDeliver} Days</TableCell>

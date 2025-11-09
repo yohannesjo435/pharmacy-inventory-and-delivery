@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 export const createDriver = async (prevState: unknown, formData: FormData) => {
   const name = formData.get("name") as string;
@@ -17,6 +18,7 @@ export const createDriver = async (prevState: unknown, formData: FormData) => {
       },
     });
     console.log(user);
+    redirect("/admin/driver");
   } catch (error) {
     console.log(error);
   }
