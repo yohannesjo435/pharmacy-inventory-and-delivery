@@ -3,7 +3,10 @@
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { toggleProductAvailablity } from "../../_actions/products";
+import {
+  deleteProduct,
+  toggleProductAvailablity,
+} from "../../_actions/products";
 
 export function ActvieToggleDropdownItem({
   id,
@@ -27,6 +30,32 @@ export function ActvieToggleDropdownItem({
       }}
     >
       {isAvailableForPurchase ? "Deactivate" : "Activate"}
+    </DropdownMenuItem>
+  );
+}
+
+export function DeleteDropdownItem({
+  id,
+  disabled,
+}: {
+  id: string;
+  disabled: boolean;
+}) {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  return (
+    <DropdownMenuItem
+      disabled={disabled || isPending}
+      onClick={() => {
+        startTransition(async () => {
+          await deleteProduct(id);
+          router.refresh();
+        });
+      }}
+      className="px-2"
+    >
+      Delete
     </DropdownMenuItem>
   );
 }

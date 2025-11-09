@@ -66,7 +66,7 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "Anlatics",
+          title: "Analytics",
           url: "/admin",
         },
         {

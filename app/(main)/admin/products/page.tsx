@@ -18,7 +18,10 @@ import {
 import prisma from "@/lib/prisma";
 import { MoreVertical } from "lucide-react";
 import Link from "next/link";
-import { ActvieToggleDropdownItem } from "./_componets/ProductAction";
+import {
+  ActvieToggleDropdownItem,
+  DeleteDropdownItem,
+} from "./_componets/ProductAction";
 
 const page = () => {
   return (
@@ -46,6 +49,11 @@ export async function ProductsTable() {
       description: true,
       isAvailableForPurchase: true,
       createdAt: true,
+      _count: {
+        select: {
+          orders: true,
+        },
+      },
     },
     take: 10,
     orderBy: {
@@ -98,7 +106,9 @@ export async function ProductsTable() {
 
                   <DropdownMenuContent>
                     <DropdownMenuItem>
-                      <a href="/">Download</a>
+                      <a href={`/admin/products/${product.id}/download`}>
+                        Download
+                      </a>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link href={`/admin/products/${product.id}/edit`}>
@@ -110,12 +120,10 @@ export async function ProductsTable() {
                       isAvailableForPurchase={product.isAvailableForPurchase}
                     />
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      variant="destructive"
-                      className="text-destructive"
-                    >
-                      Delete
-                    </DropdownMenuItem>
+                    <DeleteDropdownItem
+                      disabled={product._count.orders > 0}
+                      id={product.id}
+                    />
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>
