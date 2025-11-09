@@ -1,12 +1,17 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { ChartAreaLegend } from "./_component/ChartAreaDefault";
+import TopSellingItem from "./_component/TopSellingItem";
+import { ChartBarMultiple } from "./_component/BarChart";
+import { RecentOrdersTable } from "./_component/RecentOrdersTable";
+import { shortenText } from "@/lib/formatter";
 
 const AdminDashboard = () => {
   return (
-    <div className="bg-[#fefefe]">
-      <div className="w-[90%] m-auto">
-        <div className="mt-5 mb-10 grid grid-cols-2 md:grid-cols-4 gap-6 *:shadow-2xs *:border *:rounded-2xl *:p-4">
+    <div className="">
+      <div className="w-[95%] m-auto space-y-5">
+        <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-6 *:shadow-2xs dark:*:border-zinc-50 *:border *:rounded-2xl *:p-4">
           {items.map(({ title, amount, icon, alt, percentage, arrow }) => (
             <div
               className="flex flex-col justify-around h-36"
@@ -15,7 +20,9 @@ const AdminDashboard = () => {
               <div className="flex justify-between">
                 <div>
                   <div className="text-gray-500 text-[12px]">{title}</div>
-                  <div className="text-2xl font-semibold">${amount}</div>
+                  <div className="text-2xl font-semibold">
+                    ${shortenText(amount, 7)}
+                  </div>
                 </div>
                 <Image src={`/svg/${icon}`} width={50} height={100} alt={alt} />
               </div>
@@ -51,15 +58,25 @@ const AdminDashboard = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-1 flex-col gap-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="col-span-3">
+            <ChartAreaLegend />
           </div>
-          <div className="bg-muted/50 flex-1 rounded-xl min-h-[400px]"></div>
+          <div className="rounded-xl col-span-4 md:col-span-1">
+            <TopSellingItem />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+          <div className="col-span-2">
+            <ChartBarMultiple />
+          </div>
+          <div className="col-span-2 rounded-xl">
+            <RecentOrdersTable />
+          </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 };

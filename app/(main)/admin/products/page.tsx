@@ -22,6 +22,7 @@ import {
   ActvieToggleDropdownItem,
   DeleteDropdownItem,
 } from "./_componets/ProductAction";
+import { shortenText } from "@/lib/formatter";
 
 const page = () => {
   return (
@@ -82,11 +83,15 @@ export async function ProductsTable() {
         <TableBody>
           {products.map((product) => (
             <TableRow key={product.id}>
-              <TableCell className="font-medium">{product.id}</TableCell>
-              <TableCell>{product.name}</TableCell>
+              <TableCell className="font-medium">
+                {shortenText(product.id, 10)}
+              </TableCell>
+              <TableCell>{shortenText(product.name, 20)}</TableCell>
               <TableCell>{product.priceInCents}</TableCell>
               <TableCell className="">{product.quantity}</TableCell>
-              <TableCell className="">{product.description}</TableCell>
+              <TableCell className="">
+                {product != null && shortenText(product.description, 20)}
+              </TableCell>
               <TableCell className="">
                 {product.isAvailableForPurchase ? (
                   <div className="text-green-500 font-semibold">YES</div>
@@ -105,11 +110,6 @@ export async function ProductsTable() {
                   </DropdownMenuTrigger>
 
                   <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      <a href={`/admin/products/${product.id}/download`}>
-                        Download
-                      </a>
-                    </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link href={`/admin/products/${product.id}/edit`}>
                         Edit
