@@ -5,12 +5,9 @@ import {
   AudioWaveform,
   BookOpen,
   Bot,
-  CirclePlus,
-  ClipboardList,
   Command,
   Frame,
   GalleryVerticalEnd,
-  icons,
   Map,
   PieChart,
   Settings2,
@@ -62,32 +59,28 @@ const data = {
     {
       title: "Dashboard",
       url: "#",
-      icon: PieChart,
+      icon: SquareTerminal,
       isActive: true,
       items: [
         {
           title: "Anlatics",
-          url: "/admin",
+          url: "#",
         },
         {
           title: "Order managment",
-          url: "admin/products",
+          url: "#",
         },
         {
           title: "Customers",
-          url: "/admin",
+          url: "#",
         },
         {
-          title: "Transaction",
-          url: "/admin",
-        },
-        {
-          title: "Supplier",
-          url: "/admin",
+          title: "Transacction",
+          url: "#",
         },
         {
           title: "Categories",
-          url: "/admin",
+          url: "#",
         },
         {
           title: "Driver",
@@ -145,7 +138,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         {items.map((item) => (
           <div key={item.title} className="px-1">
-          <SidebarMenuItem key={item.title} className="px-2">
             <SidebarMenuButton asChild>
               <Link href={item.url}>
                 <item.icon />
@@ -165,14 +157,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
 const items = [
   {
-    title: "Add Product",
-    url: "/admin/products/new",
-    icon: CirclePlus,
+    title: "Product",
+    url: "#",
+    icon: Home,
   },
   {
     title: "Product List",
-    url: "/admin/products",
-    icon: ClipboardList,
+    url: "#",
+    icon: Inbox,
   },
   {
     title: "Supplier",
